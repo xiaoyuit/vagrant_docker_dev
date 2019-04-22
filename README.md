@@ -4,7 +4,6 @@
 
 | 软件 | 版本 | 备注 |
 | ------ | ------ | ------ |
-| docker-compose | 1.22.0 |  |
 | nginx | 1.14.0-alpine | |
 | mysql | 5.7.25 | |
 | php | 7.2.5-fpm-alpine3.7 | |
