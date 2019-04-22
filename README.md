@@ -148,11 +148,11 @@ docker-compose up --build
 ```
 docker-compose start -d
 ```
-```
-mysql账号/密码：root/root
-redis账号/密码：root/root
-vsftpd账号/密码：ftproot/ftproot
-```
+| 软件 | 账号 | 密码 |
+| ------ | ------ | ------ |
+| mysql | root | root |
+| redis | root | root |
+| vsftpd | root | root |
 #### 5、清理lnmp
 ```
 docker ps -a|grep -v 'CONTAINER ID'|awk {'print $1'}|xargs docker rm
