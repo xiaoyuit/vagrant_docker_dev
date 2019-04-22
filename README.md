@@ -130,13 +130,18 @@ cd /vagrant/lnmp
 ```
 docker-compose build
 ```
-#### 3、运行
+#### 3、重建服务
 ```
-docker-compose up
+docker-compose up --build
 ```
 #### 4、后台运行
 ```
-docker-compose up -d
+docker-compose start -d
+```
+```
+mysql账号/密码：root/root
+redis账号/密码：root/root
+vsftpd账号/密码：ftproot/ftproot
 ```
 #### 5、清理lnmp
 ```
@@ -160,7 +165,7 @@ docker inspect lnmp_mysql_1
 ```
 #### 9、启动一个自删除的容器
 ```
-docker run --rm -it debian:9.5-slim /bin/bash
+docker run --rm -it nginx:1.14.0-alpine /bin/bash
 ```
 #### 10、补充:
 高版本的php-fpm,发现有个问题, 已经开始调试了,但是在无操作历时大概1分多钟的时间后,调试会自动终止,是进程管理器那边有个超时设置,时间一超, 就会终止掉php进程.
