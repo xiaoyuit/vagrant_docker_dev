@@ -1,0 +1,93 @@
+version: '3'
+
+networks:
+  lnmp:
+
+services:
+  nginx:
+    build: nginx
+    networks:
+      - lnmp
+    depends_on:
+      - php
+    volumes:
+      - $PWD/nginx/conf/nginx.conf:/etc/nginx/nginx.conf:rw
+      - $PWD/nginx/conf/conf.d:/etc/nginx/conf.d:rw
+      - $PWD/nginx/conf/sites-available:/etc/nginx/sites-available:rw
+      - $PWD/nginx/conf/sites-enabled:/etc/nginx/sites-enabled:rw
+      - $PWD/wwwroot:/usr/share/nginx:rw
+      - $PWD/logs/nginx:/var/log/nginx:rw
+    ports:
+      - "80:80"
+    restart: always
+    command: ["nginx-debug", "-g", "daemon off;"]
+
+  php:
+    build: php
+    networks:
+      - lnmp
+    depends_on:
+      - mysql
+    volumes:
+      - $PWD/wwwroot:/usr/share/nginx:rw
+      - $PWD/logs/php:/usr/local/var/log:rw
+    ports:
+      - "9000:9000"
+    restart: always
+    command: ["php-fpm"]
+
+  mysql:
+    build: mysql
+    networks:
+      - lnmp
+    volumes:
+      - $PWD/data/mysql:/var/lib/mysql:rw
+      - $PWD/logs/mysql:/var/log/mysql:rw
+    ports:
+      - "3306:3306"
+    privileged: true
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
+    command: ["--character-set-server=utf8"]
+
+  redis:
+    build: redis
+    networks:
+      - lnmp
+    volumes:
+      - $PWD/data/redis:/root/redis/data:rw
+      - $PWD/logs/redis:/root/redis/log:rw
+    ports:
+      - "6379:6379"
+    privileged: true
+    sysctls:
+      - net.core.somaxconn=65535
+    restart: always
+    command: ["redis-server", "/etc/redis/redis.conf"]
+
+  vsftpd:
+    build: vsftpd
+    networks:
+      - lnmp
+    volumes:
+      - $PWD/vsftpd/conf/vsftpd:/etc/pam.d/vsftpd:rw
+      - $PWD/wwwroot:/usr/share/nginx:rw
+    ports:
+      - "21:21"
+      - "9001:9001"
+      - "9002:9002"
+      - "9003:9003"
+      - "9004:9004"
+      - "9005:9005"
+      - "9006:9006"
+      - "9007:9007"
+      - "9008:9008"
+      - "9009:9009"
+      - "9010:9010"
+    privileged: true
+    restart: always
+    command: ["vsftpd", "/etc/vsftpd.conf"]
+
+
+    
