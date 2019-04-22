@@ -1,5 +1,16 @@
 # Vagrant+Docker本地开发环境搭建
 
+## 软件架构
+
+| 软件 | 版本 | 备注 |
+| ------ | ------ | ------ |
+| docker-compose | 1.22.0 |  |
+| nginx | 1.14.0-alpine | |
+| mysql | 5.7.25 | |
+| php | 7.2.5-fpm-alpine3.7 | |
+| redis | 4.0.9-alpine | |
+| vsftpd | 3.0.3 | |
+
 ## 一、下载所需软件
 #### 1）VirtualBox
 Mac
