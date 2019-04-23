@@ -73,4 +73,11 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
+
+  config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
+  config.vm.provision :shell, :inline => "echo 执行开机启动配置", :run => "always"
+  config.vm.provision :shell, :path => "init.sh"
+  config.vm.provision :shell, :path => "boot.sh", :run => "always"
+  config.vm.provision :shell, :inline => "echo 完成开机启动配置", :run => "always"
+
 end
