@@ -7,7 +7,7 @@ sudo service ssh restart > /dev/null 2>&1
 #设置root账号密码
 echo root:vagrant | sudo chpasswd root
 #安装docker
-sudo curl -fsSL "https://get.docker.com/" | bash -s -- --mirror Aliyun
+sudo curl -fsSL "https://get.docker.com/" | bash -s -- --mirror Aliyun > /dev/null 2>&1
 sudo mkdir -p /etc/docker/
 sudo cat > /etc/docker/daemon.json <<EOF
 {
