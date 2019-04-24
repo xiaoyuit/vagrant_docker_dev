@@ -75,7 +75,31 @@ docker-compose start -d
 | redis | root | root |
 | vsftpd | root | root |
 
-### 四、配置phpstorm
+### 四、添加网站
+#### 1、首先根据网站配置模板创建新模板
+```
+cp /vagrant/lnmp/nginx/conf/conf.d/default.conf /vagrant/lnmp/nginx/conf/sites-available/blog.conf
+```
+编辑端口及项目路径，比如8080端口
+```
+cd /vagrant/lnmp/nginx/conf/sites-enabled
+ln -s ../sites-available/blog.conf
+```
+#### 2、添加nginx容器暴露端口
+```
+vim /vagrant/lnmp/docker-compose.yaml
+```
+nginx容器添加
+```
+    ports:
+      - "8080:8080"
+```
+#### 3、重启容器
+```
+docker-compose up --build
+```
+
+### 五、配置phpstorm
 #### 1、配置xdebug
 打开 settings -> Languages & Frameworks -> PHP -> Debug -> xdebug -> Debug port，配置端口号，和php.ini中的xdebug.remote_port 对应 比如:9000
 #### 2、配置DGBp Proxy
