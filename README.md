@@ -156,7 +156,14 @@ docker inspect lnmp_mysql_1
 ```
 docker run --rm -it nginx:1.14.0-alpine /bin/bash
 ```
-#### 8、补充:
+#### 8、检查一个文件格式（dos格式会影响基本运行及vsftpd配置文件读取）
+```
+find ./ -name '*.sh'|xargs file
+```
+```
+file 文件地址 | grep -q CRLF && echo file is dos format || echo file is unix format
+```
+#### 9、补充:
 高版本的php-fpm,发现有个问题, 已经开始调试了,但是在无操作历时大概1分多钟的时间后,调试会自动终止,是进程管理器那边有个超时设置,时间一超, 就会终止掉php进程.
 解决方案如下(超时配置成1小时):
 1）apache module的情况下:
