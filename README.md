@@ -34,6 +34,21 @@ https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.msi
 ```
 https://app.vagrantup.com/ubuntu/boxes/bionic64/versions/20190419.0.0/providers/virtualbox.box
 ```
+#### 4）升级powershell
+如果报错
+```
+The version of powershell currently installed on this host is less than
+the required minimum version. Please upgrade the installed version of
+powershell to the minimum required version and run the command again.
+
+  Installed version: 2
+
+  Minimum required version: 3
+```
+则需要升级powershell
+```
+http://download.microsoft.com/download/E/7/6/E76850B8-DA6E-4FF5-8CCE-A24FC513FD16/Windows6.1-KB2506143-x64.msu
+```
 
 ### 二、安装Vagrant环境
 #### 1）安装VirtualBox及Vagrant
