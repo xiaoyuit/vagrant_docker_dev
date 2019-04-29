@@ -11,11 +11,11 @@ services:
     depends_on:
       - php
     volumes:
-      - "/vagrant/lnmp/nginx/conf/conf.d:/etc/nginx/conf.d:rw"
-      - "/vagrant/lnmp/nginx/conf/sites-available:/etc/nginx/sites-available:rw"
-      - "/vagrant/lnmp/nginx/conf/sites-enabled:/etc/nginx/sites-enabled:rw"
-      - "/vagrant/lnmp/wwwroot:/usr/share/nginx:rw"
-      - "/vagrant/lnmp/logs/nginx:/var/log/nginx:rw"
+      - "$PWD/nginx/conf/conf.d:/etc/nginx/conf.d:rw"
+      - "$PWD/nginx/conf/sites-available:/etc/nginx/sites-available:rw"
+      - "$PWD/nginx/conf/sites-enabled:/etc/nginx/sites-enabled:rw"
+      - "$PWD/wwwroot:/usr/share/nginx:rw"
+      - "$PWD/logs/nginx:/var/log/nginx:rw"
     ports:
       - "80:80"
     restart: always
@@ -28,8 +28,8 @@ services:
     depends_on:
       - mysql
     volumes:
-      - "/vagrant/lnmp/wwwroot:/usr/share/nginx:rw"
-      - "/vagrant/lnmp/logs/php:/usr/local/var/log:rw"
+      - "$PWD/wwwroot:/usr/share/nginx:rw"
+      - "$PWD/logs/php:/usr/local/var/log:rw"
     ports:
       - "9000:9000"
     restart: always
@@ -40,8 +40,8 @@ services:
     networks:
       - lnmp
     volumes:
-      - "/vagrant/lnmp/data/mysql:/var/lib/mysql:rw"
-      - "/vagrant/lnmp/logs/mysql:/var/log/mysql:rw"
+      - "$PWD/data/mysql:/var/lib/mysql:rw"
+      - "$PWD/logs/mysql:/var/log/mysql:rw"
     ports:
       - "3306:3306"
     privileged: true
@@ -55,8 +55,8 @@ services:
     networks:
       - lnmp
     volumes:
-      - "/vagrant/lnmp/data/redis:/root/redis/data:rw"
-      - "/vagrant/lnmp/logs/redis:/root/redis/log:rw"
+      - "$PWD/data/redis:/root/redis/data:rw"
+      - "$PWD/logs/redis:/root/redis/log:rw"
     ports:
       - "6379:6379"
     privileged: true
@@ -70,7 +70,7 @@ services:
     networks:
       - lnmp
     volumes:
-      - "/vagrant/lnmp/wwwroot:/usr/share/nginx:rw"
+      - "$PWD/wwwroot:/usr/share/nginx:rw"
     ports:
       - "21:21"
       - "9001:9001"
