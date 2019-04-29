@@ -32,3 +32,18 @@ sudo service docker restart
 # https://github.com/docker/compose
 # curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo cp /vagrant/lib/docker-compose-Linux-x86_64 /usr/local/bin/docker-compose && sudo chmod +x /usr/local/bin/docker-compose
+# 开启rc-local服务
+sudo cat >> /lib/systemd/system/rc-local.service <<EOF
+
+[Install]
+WantedBy=multi-user.target
+Alias=rc-local.service
+EOF
+sudo touch /etc/rc.local && sudo chmod 755 /etc/rc.local
+sudo cat > /etc/rc.local <<EOF
+#!/bin/bash
+#/usr/local/bin/docker-compose -f /vagrant/lnmp/docker-compose.yaml restart
+exit 0
+EOF
+sudo systemctl daemon-reload
+sudo service rc-local start

@@ -21,7 +21,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && mkdir -p /var/run/vsftpd/empty \
     && mkdir -p /var/www \
     && bash /etc/vsftpd/update_users.sh \
+    && cp /etc/vsftpd/vsftpd /etc/pam.d/vsftpd \
+    && cp /etc/vsftpd/vsftpd.conf /etc/vsftpd.conf \
     && echo "alias ll='ls -alF'" >> /root/.bashrc \
     && echo "alias l='ls -CF'" >> /root/.bashrc
-
-COPY ["conf/vsftpd.conf","/etc/vsftpd.conf"]
