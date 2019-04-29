@@ -42,7 +42,6 @@ EOF
 sudo touch /etc/rc.local && sudo chmod 755 /etc/rc.local
 sudo cat > /etc/rc.local <<EOF
 #!/bin/bash
-#/usr/local/bin/docker-compose -f /vagrant/lnmp/docker-compose.yaml restart
 exit 0
 EOF
 sudo systemctl daemon-reload
