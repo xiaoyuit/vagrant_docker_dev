@@ -10,6 +10,40 @@
 | redis | 4.0.9-alpine | |
 | vsftpd | 3.0.3 | |
 
+## 目录结构
+~~~
+rootpath  根目录
+├─lib                           软件包路径
+├─lnmp                          PHP运行环境目录
+│  ├─data                      数据目录
+│  │  ├─mysql                 mysql数据文件目录
+│  │  ├─redis                 redis数据文件目录
+│  │  └─ ...                  更多数据目录
+│  │
+│  ├─logs                      日志文件目录
+│  │  ├─nginx                 nginx日志文件目录
+│  │  ├─mysql                 mysql日志文件目录
+│  │  └─ ...                  更多日志目录
+│  │
+│  ├─mysql                     mysql容器目录
+│  ├─nginx                     nginx容器目录
+│  ├─php                       php容器目录
+│  ├─redis                     redis容器目录
+│  ├─vsftpd                    vsftpd容器目录
+│  ├─wwwroot                   网站目录根目录
+│  │  ├─default               默认网站根目录
+│  │  └─ ...                  更多网站根目录
+│  │
+│  └─docker-compose.yaml       docker-compose配置文件
+│
+├─boot.sh                       虚拟机启动配置脚本
+├─init.sh                       虚拟机初始化脚本
+├─start.bat                     Vagrant windows启动脚本
+├─stop.bat                      Vagrant windows关闭脚本
+├─Vagrant                       Vagrant配置文件
+├─README.md                     README 文件
+~~~
+
 ## 安装方式
 ### 一、下载所需软件
 #### 1）VirtualBox
@@ -89,6 +123,11 @@ docker-compose start -d
 | mysql | root | root |
 | redis | root | root |
 | vsftpd | root | root |
+#### 4、配置开机启动
+编辑启动脚本boot.sh，去掉启动代码注释
+```
+sudo /usr/local/bin/docker-compose -f /vagrant/lnmp/docker-compose.yaml restart
+```
 
 ### 四、添加网站
 #### 1、首先根据网站配置模板创建新模板
