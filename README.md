@@ -9,6 +9,7 @@
 | php | 7.2.5-fpm-alpine3.7 | |
 | redis | 4.0.9-alpine | |
 | vsftpd | 3.0.3 | |
+| socketlog | | |
 
 ## 目录结构
 ~~~

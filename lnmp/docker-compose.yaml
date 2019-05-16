@@ -87,5 +87,16 @@ services:
     restart: always
     command: ["vsftpd", "/etc/vsftpd.conf"]
 
-
+  socketlog:
+    build: socketlog
+    networks:
+      - lnmp
+    volumes:
+      - "$PWD/socketlog/conf:/socketlog:rw"
+    ports:
+      - "1229:1229"
+      - "1116:1116"
+    privileged: true
+    restart: always
+    command: ["node", "/socketlog/server/index.js"]
     
