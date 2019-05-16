@@ -31,6 +31,7 @@ rootpath  根目录
 │  ├─php                       php容器目录
 │  ├─redis                     redis容器目录
 │  ├─vsftpd                    vsftpd容器目录
+│  ├─socketlog                    vsftpd容器目录
 │  ├─wwwroot                   网站目录根目录
 │  │  ├─default               默认网站根目录
 │  │  └─ ...                  更多网站根目录
